@@ -283,4 +283,41 @@ public class Connect {
         }
         return false;
     }
+    
+    public boolean instantUpdate(Account acc) {
+        Statement stmt;
+        String sql=null;
+        ResultSet rs=null, rs2 = null;
+        try {
+            stmt = conn.createStatement();
+            sql="select * from account where accountnumber='"+acc.getAccountNumber()+"'";
+            rs =stmt.executeQuery(sql);
+            if(rs.next()){
+                sql="update account set balance=" + acc.getBalance() + " where accountnumber=" + acc.getAccountNumber();
+                stmt.executeUpdate(sql);
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public Account getAccount(String accnum) {
+        Statement stmt;
+        String sql = "select * from account where accountnumber=" + accnum;
+        ResultSet rs;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next()) {
+                return new Account(rs.getString(1), rs.getDouble(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
