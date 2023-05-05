@@ -212,6 +212,7 @@ public class JMain extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
@@ -222,7 +223,7 @@ public class JMain extends javax.swing.JFrame {
         if(jAccountNumber.getText().isBlank() || jBalance.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Fields must be filled!");
             return;
-        } else if(bal > 1000) {
+        } else if(bal < 1000) {
             JOptionPane.showMessageDialog(null, "Account should have a maintaining balance of 1000");
         } else {
             Account a = new Account(accnum, bal);

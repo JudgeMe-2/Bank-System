@@ -107,6 +107,7 @@ public class JLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameActionPerformed
@@ -118,20 +119,22 @@ public class JLogin extends javax.swing.JFrame {
         int result=conn.login(jUsername.getText(), jPassword.getText());
        if (result== 1){
            
-           /*mainGui = new JMain(jUsername.getText());
+           mainGui = new JMain(jUsername.getText());
             mainGui.show();
-            mainGui.setDefaultCloseOperation(EXIT_ON_CLOSE);*/
-           JTransfer trans = new JTransfer(jUsername.getText());
+            mainGui.setDefaultCloseOperation(EXIT_ON_CLOSE);
+           /*JTransfer trans = new JTransfer(jUsername.getText());
            trans.setDefaultCloseOperation(EXIT_ON_CLOSE);
-           trans.show();
+           trans.show();*/
+           dispose();
        } else if(result == 2) {
            adminGui = new JAdmin();
            adminGui.show();
            adminGui.setDefaultCloseOperation(EXIT_ON_CLOSE);
+           dispose();
        }else if(result ==0) {
            JOptionPane.showMessageDialog(this, "Incorrect username/password.");
        }
-       dispose();
+       
            
        
     }//GEN-LAST:event_jButton1ActionPerformed

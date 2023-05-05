@@ -103,6 +103,10 @@ public class Connect {
             sql="select * from account where accountnumber='"+account.getAccountNumber()+"'";
             rs =stmt.executeQuery(sql);
             if(rs.next()){
+                /*if(rs.getDouble(2) - account.getBalance() < 1000) {
+                    JOptionPane.showMessageDialog(null, "Account must have a 1000 maintaining balance");
+                    return false;
+                }*/
                 sql="insert into verification values('"+rs.getString(3)+"','"+account.getAccountNumber()+"','"+account.getBalance()+"', 'Update', 0)";
                 stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null, "Update will be proccess");
